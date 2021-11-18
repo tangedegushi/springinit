@@ -6,6 +6,7 @@ import com.springboot.springinit.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class HelloController {
@@ -14,9 +15,19 @@ public class HelloController {
     private StudentService studentService;
 
     @RequestMapping("/hello")
-    public String hello(){
+    public Student hello(){
+        //内部通过 Jackson JSON 转化json格式数据
         Student student = studentService.selectStudentById(1);
-        return "this is the tangedegushi hello "+student.getName();
+        return student;
+
+    }
+
+    @RequestMapping("/gogo")
+    public ModelAndView gogo() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("gogo");
+        modelAndView.addObject("key", 12345);
+        return modelAndView;
     }
 
 }

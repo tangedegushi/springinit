@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>tangedegushi</title>
+		
+		<style>
+			#layout_list {
+				display:block;
+				background-color:#606060;
+				overflow:auto;
+				text-align:center;
+				position:relative
+			}
+			#layout_list li {
+				width:80px;
+				height:45px;
+				display:inline-block;
+				line-height:45px;
+			}
+			#layout_list li:hover{
+				background-color:#ffff00
+			}
+			#layout_list li div {
+				display:none;
+				background:#ff00ff;
+				text-align:center;
+				position:absolute;
+			}
+			#layout_list li:hover div {
+				display:block;
+				position:absolute;
+			}
+			*{
+				margin:1px
+			}
+			.trangle{
+				border: 50px solid;
+				border-color:transparent transparent transparent #333;
+				width:0px;
+				height:0px;}
+				.demo1{
+					position:relative;
+					float:left
+				}
+				.demo2{
+					position:absolute;
+					margin-top:-52px;
+					
+				}
+			
+		</style>
+	
+	</head>
+	<body>
+	<nav>
+		<a>xiaobai</a>
+		<a>xiaobai1</a>
+		<a>xiaobai2</a>
+	</nav>
+		<div>
+			<ul id="layout_list" style="border:2px solid red;margin:10px">			
+				<li class='down'>
+					<a>首页</a>
+				</li>
+				<li class='down'>
+					<a>人工智能</a>
+					<div>
+						<ul>
+							<li>人工智能1</li>
+							<li>人工智能2</li>
+							<li>人工智能3</li>
+						</ul>
+					</div>
+				</li>
+				<li class='down'>人工智能</li>
+				<li class='down'>大数据计算</li>
+				<li class='down'>编程语言</li>
+				<li class='down'>WEB前端</li>
+				<li class='down'>移动开发</li>
+				<li class='down'>设计创作</li>
+				<li class='down'>数据库</li>
+				<li class='down'>系统运维</li>
+			</ul>
+		</div>
+		<div class='trangle demo1'>
+			<div class='trangle demo2'></div>
+		</div>
+		<h1>this is the all title <span th:text="${key}"></span> </h1>
+		<div id='first' style="width:300px;background-color:#606060;float:left;position:center">
+			<h1>this is the h1 title</h1>
+		</div>
+		<div id='second' style="background-color:#909090;float:left;border-left:1px solid blue;margin-left:30px">
+			<h2>this is the h2 title</h2>
+			<img src='face_amazing.png'></img>
+		</div>
+		<div id='three' style="float:left;">		
+			<p>sdgagdfsd上升空间感受国家 卡视角大富科技啊家束带结发加按理说大富科技as江东父老按时间拉时间到来副科级阿萨德阿萨世纪东方拉伸忙到飞jaw就世纪东方静安寺来
+			收到回复卡技术的符号是大是大非看哈家束带结发和喀什户危房哈斯是阿斯顿发生文身断发杀戮空间啊上看到放假啊世纪东方我我就发简单覅偶阿瓦世纪东方卡机
+			阿萨德发卡机时代峰峻啊是的经发局是科技发生是剪短发就是我奇偶几个发链接撒地方吗阿斯蒂芬骄傲和地方叫阿斯顿啥电话费爱神的箭发生啊是的金风科技得及发爱我撒娇放得开</p>
+		</div>
+
+		<script>
+			var lastClickIndex = -1;
+			var isClick = false;
+			var ev = document.getElementsByClassName('down');
+			function MouseAction(v,i) {
+				var index = i;
+				v.onmouseover = function(){
+					console.log("index = "+index);
+					v.style.background='blue'
+				}
+				v.onmouseout = function(){
+					if(isClick) {
+						isClick = false;
+						console.log('isClick inner = '+isClick);
+					}else {
+						v.style.background='#606060'
+					}
+				}
+				v.onclick = function(){
+					v.style.background='blue'
+					isClick = true;
+					if(lastClickIndex !=  -1){
+						ev[lastClickIndex].style.background = '#606060';
+					}
+					lastClickIndex = i;
+				}
+			}
+			for(var i = 0; i < ev.length ;i++){
+				new MouseAction(ev[i],i)
+			}
+		</script>
+	</body>
+</html>
