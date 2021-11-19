@@ -1,9 +1,14 @@
 package com.springboot.springinit.entity;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class TestBean {
 
+    @Value("tangedegushi")
     private String username;
+    @Value("www.baidu.com")
     private String url;
+    @Value("123456")
     private String password;
 
     public TestBean() {
