@@ -2,6 +2,7 @@ package com.springboot.springinit.controller;
 
 
 import com.springboot.springinit.entity.Student;
+import com.springboot.springinit.entity.TestBean;
 import com.springboot.springinit.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ public class StudentController {
 
     @Resource
     private StudentService studentService;
+
+    @Resource
+    private TestBean testBean;
 
     @RequestMapping(value = "/student",method = RequestMethod.GET)
     public Student getStudentById(@RequestParam(name = "id")int id){
