@@ -23,6 +23,9 @@ public class StudentController {
     @Resource
     private TestBean testBean;
 
+    @Resource
+    private TestBean testBean1;
+
     @RequestMapping(value = "/student",method = RequestMethod.GET)
     public Student getStudentById(@RequestParam(name = "id")int id){
         //内部通过 Jackson JSON 转化json格式数据
