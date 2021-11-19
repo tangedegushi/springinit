@@ -4,11 +4,8 @@ package com.springboot.springinit.controller;
 import com.springboot.springinit.entity.Student;
 import com.springboot.springinit.entity.TestBean;
 import com.springboot.springinit.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.springboot.springinit.util.RedisUtil;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -19,10 +16,10 @@ public class StudentController {
 
     @Resource
     private StudentService studentService;
-
+    @Resource
+    private RedisUtil redisUtil;
     @Resource
     private TestBean testBean;
-
     @Resource
     private TestBean testBean1;
 
@@ -38,6 +35,12 @@ public class StudentController {
         //内部通过 Jackson JSON 转化json格式数据
         List<Student> student = studentService.selectStudentByAll();
         return student;
+    }
+
+    @GetMapping("/redis")
+    public String updateRedis(@RequestParam(name = "redisKey")String redisKey, @RequestParam(name = "redisValue") String redisValue) {
+        redisUtil.set(redisKey, redisValue);
+        return "true";
     }
 
     @RequestMapping(value = "filterStudent")
