@@ -5,11 +5,17 @@ import com.springboot.springinit.entity.Student;
 import com.springboot.springinit.entity.TestBean;
 import com.springboot.springinit.service.StudentService;
 import com.springboot.springinit.util.RedisUtil;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class StudentController {
@@ -22,6 +28,8 @@ public class StudentController {
     private TestBean testBean;
     @Resource
     private TestBean testBean1;
+    @Resource
+    private RabbitTemplate rabbitTemplate;
 
     @RequestMapping(value = "/student",method = RequestMethod.GET)
     public Student getStudentById(@RequestParam(name = "id")int id){
@@ -46,6 +54,20 @@ public class StudentController {
     @RequestMapping(value = "filterStudent")
     public List<Student> getStudentByIdAndGender(@RequestParam(name = "age")int age, @RequestParam(name = "gender")String gerder) {
         return studentService.selectStudentByIdAndGender(age, gerder);
+    }
+
+    @RequestMapping(value = "rabbit/direct")
+    public String sendDirectMessage(){
+        String messageId = String.valueOf(UUID.randomUUID());
+        String messageData = "test message, hello!";
+        String createTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        Map<String,Object> map=new HashMap<>();
+        map.put("messageId",messageId);
+        map.put("messageData",messageData);
+        map.put("createTime",createTime);
+        //将消息携带绑定键值：TestDirectRouting 发送到交换机TestDirectExchange
+        rabbitTemplate.convertAndSend("TestDirectExchange", "TestDirectRouting", map);
+        return "ok";
     }
 
     @RequestMapping("/gogo")
