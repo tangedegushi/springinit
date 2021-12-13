@@ -35,6 +35,7 @@ public class StudentController {
     public Student getStudentById(@RequestParam(name = "id")int id){
         //内部通过 Jackson JSON 转化json格式数据
         Student student = studentService.selectStudentById(id);
+        System.out.println("bean value = "+testBean.toString());
         return student;
     }
 

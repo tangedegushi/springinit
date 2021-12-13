@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class TestBean {
 
-    @Value("tangedegushi")
+    @Value("#{'${spring.datasource.username}'}")
     private String username;
     @Value("www.baidu.com")
     private String url;
@@ -29,5 +29,29 @@ public class TestBean {
 
     public void cleanUp() {
         System.out.println("TestBean 销毁。。。");
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
