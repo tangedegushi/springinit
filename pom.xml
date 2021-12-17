@@ -73,6 +73,31 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!--由于前后端不通过保存session和cookie来进行判断，所以为了保证spring security能够记录登录状态，
+        所以需要传递一个值，让这个值能够自我验证来源，同时能够得到数据信息。选型我们选择JWT。对于java客户端我们选择使用jjwt-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.10.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+            <version>0.11.2</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

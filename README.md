@@ -11,3 +11,8 @@
     参考博客： 
     https://www.cnblogs.com/dl610455894/p/14072960.html
     https://www.kancloud.cn/zhangpn/spring-security/1668578
+    
+    对于前后端分离的情况使用登录、登出：
+    https://www.cnblogs.com/dl610455894/p/14072960.html
+    登录url：http://localhost:8069/login post key：username、password
+    登出url：http://localhost:8069/logout get header key：auth
