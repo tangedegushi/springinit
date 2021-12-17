@@ -31,7 +31,12 @@ public class StudentController {
     @Resource
     private RabbitTemplate rabbitTemplate;
 
-    @RequestMapping(value = "/student",method = RequestMethod.GET)
+    @GetMapping("/admin/hello") // 需要匹配admin用户
+    public String hello() {
+        return "hello spring security";
+    }
+
+    @RequestMapping(value = "/product/student",method = RequestMethod.GET)
     public Student getStudentById(@RequestParam(name = "id")int id){
         //内部通过 Jackson JSON 转化json格式数据
         Student student = studentService.selectStudentById(id);
