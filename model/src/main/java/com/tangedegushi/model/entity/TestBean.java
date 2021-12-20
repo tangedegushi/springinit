@@ -1,8 +1,12 @@
 package com.tangedegushi.model.entity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 public class TestBean {
+
+    private Logger logger = LoggerFactory.getLogger(TestBean.class.getName());
 
     @Value("#{'${spring.datasource.username}'}")
     private String username;
@@ -12,11 +16,11 @@ public class TestBean {
     private String password;
 
     public TestBean() {
-        System.out.println("test bean construct init");
+        logger.info("test bean construct init");
     }
 
     public void sayHello() {
-        System.out.println("TestBean sayHello...");
+        logger.info("TestBean sayHello...");
     }
 
     public String toString() {
@@ -24,11 +28,11 @@ public class TestBean {
     }
 
     public void start() {
-        System.out.println("TestBean 初始化。。。");
+        logger.info("TestBean {}","初始化。。。");
     }
 
     public void cleanUp() {
-        System.out.println("TestBean 销毁。。。");
+        logger.info("TestBean 销毁。。。");
     }
 
     public String getUsername() {
