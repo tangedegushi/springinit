@@ -2,6 +2,8 @@ package com.tangedegushi.model.controller;
 
 import com.tangedegushi.model.entity.Student;
 import com.tangedegushi.model.entity.TestBean;
+import com.tangedegushi.model.response.BaseResponse;
+import com.tangedegushi.model.response.StatusCode;
 import com.tangedegushi.model.service.StudentService;
 import com.tangedegushi.model.util.RedisUtil;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -44,10 +46,12 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/students",method = RequestMethod.GET)
-    public List<Student> getStudentByAll(){
+    public BaseResponse<List<Student>> getStudentByAll(){
         //内部通过 Jackson JSON 转化json格式数据
+        BaseResponse<List<Student>> response = new BaseResponse<>(StatusCode.Success);
         List<Student> student = studentService.selectStudentByAll();
-        return student;
+        response.setData(student);
+        return response;
     }
 
     @GetMapping("/redis")
