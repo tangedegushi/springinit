@@ -48,6 +48,7 @@ public class StudentController {
     @RequestMapping(value = "/students",method = RequestMethod.GET)
     public BaseResponse<List<Student>> getStudentByAll(){
         //内部通过 Jackson JSON 转化json格式数据
+        testBean.sayHello();
         BaseResponse<List<Student>> response = new BaseResponse<>(StatusCode.Success);
         List<Student> student = studentService.selectStudentByAll();
         response.setData(student);

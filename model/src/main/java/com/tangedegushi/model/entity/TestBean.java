@@ -3,6 +3,7 @@ package com.tangedegushi.model.entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 
 public class TestBean {
 
@@ -19,8 +20,9 @@ public class TestBean {
         logger.info("test bean construct init");
     }
 
+    @Async
     public void sayHello() {
-        logger.info("TestBean sayHello...");
+        logger.info("TestBean sayHello...{}",Thread.currentThread().getName());
     }
 
     public String toString() {
