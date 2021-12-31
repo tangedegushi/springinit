@@ -16,3 +16,7 @@
     https://www.cnblogs.com/dl610455894/p/14072960.html
     登录url：http://localhost:8069/login post key：username、password
     登出url：http://localhost:8069/logout get header key：auth
+    
+### https配置
+    参考博客
+    https://blog.csdn.net/gary_yan/article/details/77973711
